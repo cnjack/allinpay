@@ -17,8 +17,8 @@ abstract class BaseService{
     const VERSION_10 = 'v1.0';
     const VERSION_20 = 'v2.0';
 
-    const ENCRYPT_MD5 = 0;  //¶©µ¥ÉÏËÍºÍ½»Ò×½á¹ûÍ¨Öª¶¼Ê¹ÓÃMD5Ç©Ãû
-    const ENCRYPT_OTHER = 1;    //ÉÌ»§ÓÃMD5Ëã·¨ÑéÇ©ÉÏËÍ¶©µ¥£¬Í¨Áª½»Ò×½á¹ûÍ¨ÖªÊ¹ÓÃÖ¤ÊéÇ©Ãû
+    const ENCRYPT_MD5 = 0;  //è®¢å•ä¸Šé€å’Œäº¤æ˜“ç»“æœé€šçŸ¥éƒ½ä½¿ç”¨MD5ç­¾å
+    const ENCRYPT_OTHER = 1;    //å•†æˆ·ç”¨MD5ç®—æ³•éªŒç­¾ä¸Šé€è®¢å•ï¼Œé€šè”äº¤æ˜“ç»“æœé€šçŸ¥ä½¿ç”¨è¯ä¹¦ç­¾å
 
     protected $config;
     protected $properties = [];
@@ -30,7 +30,7 @@ abstract class BaseService{
 
         if(empty($url) || empty($merchantId) || empty($key)){
 
-            throw new InvalidArgumentException('È±ÉÙ±ØÒª²ÎÊı!');
+            throw new InvalidArgumentException('ç¼ºå°‘å¿…è¦å‚æ•°!');
 
         }
 
@@ -40,13 +40,13 @@ abstract class BaseService{
             'md5key' => $key
         ];
 
-        $properties = (array)($this->properties()); //»ñÈ¡ĞëÓĞ²ÎÊı
+        $properties = (array)($this->properties()); //è·å–é¡»æœ‰å‚æ•°
 
-        $this->properties = array_merge($this->properties, $properties);   //´æ´¢ĞëÓĞ²ÎÊı
+        $this->properties = array_merge($this->properties, $properties);   //å­˜å‚¨é¡»æœ‰å‚æ•°
 
-        $this->value['merchantId'] = $this->config['merchantId'];  //ÉèÖÃÉÌ»§ºÅ
+        $this->value['merchantId'] = $this->config['merchantId'];  //è®¾ç½®å•†æˆ·å·
 
-        $this->setVersion();    //³£¹æÉèÖÃ
+        $this->setVersion();    //å¸¸è§„è®¾ç½®
     }
 
     final public function setVersion ($version = 'v1.0'){
@@ -57,7 +57,7 @@ abstract class BaseService{
             return $this;
 
         }
-        throw new InvalidArgumentException('Ôİ²»Ö§³Ö´Ë°æ±¾!');
+        throw new InvalidArgumentException('æš‚ä¸æ”¯æŒæ­¤ç‰ˆæœ¬!');
     }
 
     protected function verify(){
@@ -66,8 +66,8 @@ abstract class BaseService{
     }
 
     /**
-     * ·µ»ØĞëÓĞ²ÎÊıÊı×é
-     * @return array    ĞëÓĞ²ÎÊıÊı×é
+     * è¿”å›é¡»æœ‰å‚æ•°æ•°ç»„
+     * @return array    é¡»æœ‰å‚æ•°æ•°ç»„
      */
     abstract protected function properties();
 
@@ -75,7 +75,7 @@ abstract class BaseService{
 
         if(!$this->verify()){
 
-            throw new InvalidArgumentException('·Ç·¨²Ù×÷!');
+            throw new InvalidArgumentException('éæ³•æ“ä½œ!');
 
         }
 
@@ -88,7 +88,7 @@ abstract class BaseService{
             <html xmlns="http://www.w3.org/1999/xhtml">
             <head>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-            <title>ÕıÔÚ½øÈëÖ§¸¶ÏµÍ³¡£¡£¡£</title>
+            <title>æ­£åœ¨è¿›å…¥æ”¯ä»˜ç³»ç»Ÿã€‚ã€‚ã€‚</title>
             </head>
             <body>
             <form id="data_form" action="'.$this->config['url'].'" method="post">'.$html_str.'</form>

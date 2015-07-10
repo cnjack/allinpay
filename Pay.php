@@ -12,28 +12,28 @@ use InvalidArgumentException;
 
 class Pay extends BaseService{
 
-    const PAY_TYPE_PERSONAL = 0;    //¸öÈËÍøÒøÖ§¸¶
-    const PAY_TYPE_ENTERPRISE = 4;  //ÆóÒµÍøÒøÖ§¸¶
-    const PAY_TYPE_WAP = 10;    //WAPÖ§¸¶
-    const PAY_TYPE_CREDIT = 11; //ĞÅÓÃ¿¨Ö§¸¶
-    const PAY_TYPE_QUICK = 12;  //¿ì½İÖ§¸¶
-    const PAY_TYPE_AUTH = 21;   //ÈÏÖ¤Ö§¸¶
-    const PAY_TYPE_WILDCARD = 23;   //Íâ¿¨Ö§¸¶
+    const PAY_TYPE_PERSONAL = 0;    //ä¸ªäººç½‘é“¶æ”¯ä»˜
+    const PAY_TYPE_ENTERPRISE = 4;  //ä¼ä¸šç½‘é“¶æ”¯ä»˜
+    const PAY_TYPE_WAP = 10;    //WAPæ”¯ä»˜
+    const PAY_TYPE_CREDIT = 11; //ä¿¡ç”¨å¡æ”¯ä»˜
+    const PAY_TYPE_QUICK = 12;  //å¿«æ·æ”¯ä»˜
+    const PAY_TYPE_AUTH = 21;   //è®¤è¯æ”¯ä»˜
+    const PAY_TYPE_WILDCARD = 23;   //å¤–å¡æ”¯ä»˜
 
-    const LANGUAGE_ZH_S = 1;  //¼òÌåÖĞÎÄ
-    const LANGUAGE_ZH_T = 2;    //·±ÌåÖĞÎÄ
-    const LANGUAGE_EN = 3;  //Ó¢ÎÄ
+    const LANGUAGE_ZH_S = 1;  //ç®€ä½“ä¸­æ–‡
+    const LANGUAGE_ZH_T = 2;    //ç¹ä½“ä¸­æ–‡
+    const LANGUAGE_EN = 3;  //è‹±æ–‡
 
     const CHAR_UTF8 = 1;
     const CHAR_GBK = 2;
     const CHAR_GB2312 = 3;
 
-    const TRADE_TYPE_GOODS = 'GOODS';   //ÊµÌåÎïÆ·½»Ò×
-    const TRADE_TYPE_SERVICES = 'SERVICES'; //·şÎñÀà½»Ò×
+    const TRADE_TYPE_GOODS = 'GOODS';   //å®ä½“ç‰©å“äº¤æ˜“
+    const TRADE_TYPE_SERVICES = 'SERVICES'; //æœåŠ¡ç±»äº¤æ˜“
 
-    const CURRENCY_RMB = 0;  //ÈËÃñ±Ò
-    const CURRENCY_DOLLARS = 840;    //ÃÀÔª
-    const CURRENCY_HK = 344; //¸Û±Ò
+    const CURRENCY_RMB = 0;  //äººæ°‘å¸
+    const CURRENCY_DOLLARS = 840;    //ç¾å…ƒ
+    const CURRENCY_HK = 344; //æ¸¯å¸
 
     protected function properties(){
         return [
@@ -55,7 +55,7 @@ class Pay extends BaseService{
             return $this;
 
         }
-        throw new InvalidArgumentException('Ôİ²»Ö§³Ö´ËÓïÑÔ!');
+        throw new InvalidArgumentException('æš‚ä¸æ”¯æŒæ­¤è¯­è¨€!');
     }
 
     public function setSignType($EncryptType = 0){
@@ -68,7 +68,7 @@ class Pay extends BaseService{
 
         }
 
-        throw new InvalidArgumentException('Ôİ²»Ö§³Ö´Ë¼ÓÃÜËã·¨!');
+        throw new InvalidArgumentException('æš‚ä¸æ”¯æŒæ­¤åŠ å¯†ç®—æ³•!');
     }
 
     final public function setCurrency($currencyType = 0, $tradeType = null){
@@ -76,7 +76,7 @@ class Pay extends BaseService{
 
             if($currencyType !== self::CURRENCY_RMB && is_null($tradeType)){
 
-                throw new InvalidArgumentException('ÉèÖÃÁË·ÇÈËÃñ±ÒµÄ»õ±Ò£¬¾Í±ØĞëÉèÖÃÃ³Ò×ÀàĞÍ!');
+                throw new InvalidArgumentException('è®¾ç½®äº†éäººæ°‘å¸çš„è´§å¸ï¼Œå°±å¿…é¡»è®¾ç½®è´¸æ˜“ç±»å‹!');
 
             }
 
@@ -86,7 +86,7 @@ class Pay extends BaseService{
 
         }
 
-        throw new InvalidArgumentException('Ôİ²»Ö§³Ö´Ë»õ±Ò!');
+        throw new InvalidArgumentException('æš‚ä¸æ”¯æŒæ­¤è´§å¸!');
 
     }
 
@@ -100,7 +100,7 @@ class Pay extends BaseService{
 
         }
 
-        throw new InvalidArgumentException('Ôİ²»Ö§³Ö´Ë×Ö·û¼¯!');
+        throw new InvalidArgumentException('æš‚ä¸æ”¯æŒæ­¤å­—ç¬¦é›†!');
     }
 
     final public function setUrl($pikUpUrl = '', $receiveUrl = ''){
@@ -122,19 +122,19 @@ class Pay extends BaseService{
 
         if(empty($orderNo) || empty($orderAmount)){
 
-            throw new InvalidArgumentException('È±ÉÙÖØÒª²ÎÊı!');
+            throw new InvalidArgumentException('ç¼ºå°‘é‡è¦å‚æ•°!');
 
         }
 
         if(strlen($orderNo) > 50){
 
-            throw new InvalidArgumentException('¶©µ¥ºÅ³¤¶È²»ÄÜ³¬¹ı50!');
+            throw new InvalidArgumentException('è®¢å•å·é•¿åº¦ä¸èƒ½è¶…è¿‡50!');
 
         }
 
         if(!is_int($orderAmount)){
 
-            throw new InvalidArgumentException('¶©µ¥½ğ¶îµ¥Î»²»ÕıÈ·,µ¥Î»Îª·Ö!');
+            throw new InvalidArgumentException('è®¢å•é‡‘é¢å•ä½ä¸æ­£ç¡®,å•ä½ä¸ºåˆ†!');
 
         }
 
@@ -155,7 +155,7 @@ class Pay extends BaseService{
 
         if(!in_array($payType ,$payTypeList)){
 
-            throw new InvalidArgumentException('Ôİ²»Ö§³Ö´ËÖ§¸¶·½Ê½!');
+            throw new InvalidArgumentException('æš‚ä¸æ”¯æŒæ­¤æ”¯ä»˜æ–¹å¼!');
 
         }
 
