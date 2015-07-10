@@ -1,12 +1,18 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: lilichun
- * Date: 2015/7/8 0008
- * Time: 15:17
+ * curl.php
+ *
+ * Part of Allinpay.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author    Fackeronline <1077341744@qq.com>
+ * @link      https://github.com/Fackeronline
  */
 
-namespace App\Libraries\Allinpay\Utils;
+
+namespace Allinpay\Utils;
 
 /**
  * Curl请求类  TODO:临时做法，只支持POST提交，后续有待改善

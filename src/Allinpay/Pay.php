@@ -1,12 +1,17 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: lilichun
- * Date: 2015/7/10 0010
- * Time: 10:55
+ * Pay.php
+ *
+ * Part of Allinpay.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author    Fackeronline <1077341744@qq.com>
+ * @link      https://github.com/Fackeronline
  */
 
-namespace App\Libraries\Allinpay;
+namespace Allinpay;
 
 use InvalidArgumentException;
 
