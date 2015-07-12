@@ -1,0 +1,27 @@
+{
+    "name": "Fakeronline/Allinpay",
+    "description": "通联支付SDK",
+    "keywords": [
+        "通联支付",
+        "Allinpay",
+        "Allinpay-sdk",
+        "sdk"
+    ],
+    "license": "MIT",
+    "require": {
+        "php":">=5.3",
+        "ext-mcrypt": "*"
+    },
+    "authors": [
+        {
+            "name": "fakeronline",
+            "email": "1077341744@qq.com"
+        }
+    ],
+    "minimum-stability" : "dev",
+    "autoload": {
+        "psr-4": {
+            "Fakeronline\\Allinpay\\": "Allinpay/src"
+        }
+    }
+}
