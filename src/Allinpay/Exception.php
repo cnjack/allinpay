@@ -101,10 +101,9 @@ class Exception extends BaseException{
 
     public function __construct($message = '', $code = 'MOQ00000')
     {
-
         $message = empty($this->errors[$code]) ? $this->message : $this->errors[$code] . "[{$code}]";
 
-        parent::__construct($message, $code);
+        parent::__construct($message);
     }
 
 }
