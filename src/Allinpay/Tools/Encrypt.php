@@ -11,7 +11,7 @@
  * @link      https://github.com/Fakeronline
  */
 
-namespace Allinpay\Tools;
+namespace Fakeronline\Allinpay\Tools;
 
 class Encrypt{
 
