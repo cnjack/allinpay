@@ -11,10 +11,10 @@
  * @link      https://github.com/Fakeronline
  */
 
-namespace Allinpay\Services;
+namespace Fakeronline\Allinpay\Services;
 use InvalidArgumentException;
-use Allinpay\Utils\Arr;
-use Allinpay\Utils\Form;
+use Fakeronline\Allinpay\Utils\Arr;
+use Fakeronline\Allinpay\Utils\Form;
 
 abstract class Request{
 
