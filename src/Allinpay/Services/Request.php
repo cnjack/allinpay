@@ -18,6 +18,8 @@ use Allinpay\Utils\Form;
 
 abstract class Request{
 
+    use ServiceTrait;
+
     const VERSION_10 = 'v1.0';
     const VERSION_20 = 'v2.0';
 
@@ -75,26 +77,6 @@ abstract class Request{
         }
 
         throw new InvalidArgumentException('暂不支持此签名类型!');
-    }
-
-    final protected function sort(array $contrastKey, array $data){
-
-        $result = [];
-
-        foreach($contrastKey as $key){
-
-            $result[$key] = Arr::get($data, $key, '');
-
-        }
-
-        $result = array_filter($result, function($value){
-
-            return $value !== '';
-
-        }, ARRAY_FILTER_USE_BOTH);
-
-        return $result;
-
     }
 
     abstract protected function properties();
