@@ -13,9 +13,11 @@
 
 namespace Allinpay;
 
+use Allinpay\Services\Request;
 use InvalidArgumentException;
+use Allinpay\Tools\Encrypt;
 
-class Pay extends BaseService{
+final class Pay extends Request{
 
     const PAY_TYPE_PERSONAL = 0;    //个人网银支付
     const PAY_TYPE_ENTERPRISE = 4;  //企业网银支付
@@ -46,12 +48,14 @@ class Pay extends BaseService{
         ];
     }
 
+
+
     public function __construct($url, $merchantId, $key){
         parent::__construct($url, $merchantId, $key);
         $this->charSet()->setSignType()->setCurrency();
     }
 
-    final public function setLanguage($language = 1){
+    public function setLanguage($language = 1){
 
         if($language === self::LANGUAGE_ZH_S || $language === self::LANGUAGE_ZH_T || $language === self::LANGUAGE_EN){
 
@@ -63,20 +67,8 @@ class Pay extends BaseService{
         throw new InvalidArgumentException('暂不支持此语言!');
     }
 
-    public function setSignType($EncryptType = 0){
 
-        if($EncryptType === self::ENCRYPT_MD5 || $EncryptType === self::ENCRYPT_OTHER){
-
-            $this->value['signType'] = $EncryptType;
-
-            return $this;
-
-        }
-
-        throw new InvalidArgumentException('暂不支持此加密算法!');
-    }
-
-    final public function setCurrency($currencyType = 0, $tradeType = null){
+    public function setCurrency($currencyType = 0, $tradeType = null){
         if($currencyType === self::CURRENCY_DOLLARS || $currencyType === self::CURRENCY_HK || $currencyType === self::CURRENCY_RMB){
 
             if($currencyType !== self::CURRENCY_RMB && is_null($tradeType)){
@@ -108,7 +100,7 @@ class Pay extends BaseService{
         throw new InvalidArgumentException('暂不支持此字符集!');
     }
 
-    final public function setUrl($pikUpUrl = '', $receiveUrl = ''){
+    public function setUrl($pikUpUrl = '', $receiveUrl = ''){
         if($pikUpUrl){
 
             $this->value['pickupUrl'] = $pikUpUrl;
@@ -123,29 +115,30 @@ class Pay extends BaseService{
         return $this;
     }
 
-    final public function parameter($orderNo, $orderAmount, $payType = 0){
+    final public function parameter($args){
+        //$orderNo, $orderAmount, $payType = 0
 
-        if(empty($orderNo) || empty($orderAmount)){
+        if(empty($args['orderNo']) || empty($args['orderAmount'])){
 
             throw new InvalidArgumentException('缺少重要参数!');
 
         }
 
-        if(strlen($orderNo) > 50){
+        if(strlen($args['orderNo']) > 50){
 
             throw new InvalidArgumentException('订单号长度不能超过50!');
 
         }
 
-        if(!is_int($orderAmount)){
+        if(round($args['orderAmount'], 2) != $args['orderAmount']){
 
-            throw new InvalidArgumentException('订单金额单位不正确,单位为分!');
+            throw new InvalidArgumentException('金额不正确，仅支持到分!');
 
         }
 
         $this->value['orderDatetime'] = date('YmdHis', time());
-        $this->value['orderNo'] = $orderNo;
-        $this->value['orderAmount'] = $orderAmount;
+        $this->value['orderNo'] = $args['orderNo'];
+        $this->value['orderAmount'] = $args['orderAmount'] * 100; //转为分
 
         $payTypeList = [
             self::PAY_TYPE_PERSONAL,
@@ -158,37 +151,22 @@ class Pay extends BaseService{
 
         ];
 
-        if(!in_array($payType ,$payTypeList)){
+        $args['payType'] = empty($args['payType']) ? self::PAY_TYPE_PERSONAL : $args['payType'];
+
+        if(!in_array($args['payType'] ,$payTypeList)){
 
             throw new InvalidArgumentException('暂不支持此支付方式!');
 
         }
 
-        $this->value['payType'] = $payType;
+        $this->value['payType'] = $args['payType'];
 
-        $data = [];
+        $this->postData = $this->sort($this->properties, $this->value);
 
-        foreach($this->properties as $args){
-
-            if(isset($this->value[$args]) && $args != 'signMsg'){
-
-                $data[$args] = $this->value[$args];
-
-            }
-
-        }
-
-        $data['key'] = $this->config['md5key'];
-
-        $data['signMsg'] = strtoupper(md5(urldecode(http_build_query($data))));
-
-        unset($data['key']);
-
-        $this->postData = $data;
+        $this->postData['signMsg'] = Encrypt::MD5_sign($this->postData, $this->config['md5key']);
 
         return $this;
 
     }
-
 
 }
