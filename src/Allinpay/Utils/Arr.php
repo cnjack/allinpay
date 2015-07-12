@@ -25,7 +25,7 @@ class Arr{
      * @param null $default
      * @return null
      */
-    public static function get($array, $key, $default = null)
+    public static function get(array $array, $key, $default = null)
     {
         if (is_null($key)) {
             return $array;
@@ -43,6 +43,26 @@ class Arr{
         }
 
         return $array;
+    }
+
+    public static function getAll(array $array, array $key_array, $filterNull = false){
+
+        $result = [];
+
+        foreach($key_array as $key){
+
+            $temp = self::get($array, $key);
+
+            if(is_null($temp) && $filterNull){
+                continue;
+            }
+
+            $result[$key] = $temp;
+
+        }
+
+        return $result;
+
     }
 
 }
