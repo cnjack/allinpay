@@ -11,11 +11,11 @@
  * @link      https://github.com/Fakeronline
  */
 
-namespace Allinpay;
+namespace Fakeronline\Allinpay;
 
-use Allinpay\Services\Request;
+use Fakeronline\Allinpay\Services\Request;
 use InvalidArgumentException;
-use Allinpay\Tools\Encrypt;
+use Fakeronline\Allinpay\Tools\Encrypt;
 
 final class Pay extends Request{
 
