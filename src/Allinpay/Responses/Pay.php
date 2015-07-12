@@ -11,10 +11,10 @@
  * @link      https://github.com/Fakeronline
  */
 
-namespace Allinpay\Responses;
-use Allinpay\Services\Response;
-use Allinpay\Tools\Encrypt;
-use Allinpay\Utils\Arr;
+namespace Fakeronline\Allinpay\Responses;
+use Fakeronline\Allinpay\Services\Response;
+use Fakeronline\Allinpay\Tools\Encrypt;
+use Fakeronline\Allinpay\Utils\Arr;
 
 class Pay extends Response{
 
@@ -35,5 +35,6 @@ class Pay extends Response{
 
         return false;
     }
+
 }
 
