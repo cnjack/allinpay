@@ -11,8 +11,8 @@
  * @link      https://github.com/Fakeronline
  */
 
-namespace Allinpay\Services;
-use Allinpay\Tools\Encrypt;
+namespace Fakeronline\Allinpay\Services;
+use Fakeronline\Allinpay\Tools\Encrypt;
 use Exception;
 
 abstract class Response{

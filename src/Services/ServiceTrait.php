@@ -11,9 +11,9 @@
  * @link      https://github.com/Fakeronline
  */
  
-namespace Allinpay\Services;
+namespace Fakeronline\Allinpay\Services;
 
-use Allinpay\Utils\Arr;
+use Fakeronline\Allinpay\Utils\Arr;
 
 trait ServiceTrait{
 
