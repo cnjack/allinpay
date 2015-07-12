@@ -10,8 +10,6 @@
  * @author    Fackeronline <1077341744@qq.com>
  * @link      https://github.com/Fakeronline
  */
-
-
 namespace Fakeronline\Allinpay\Utils;
 
 class Arr{
