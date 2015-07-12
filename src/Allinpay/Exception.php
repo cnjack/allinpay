@@ -11,7 +11,7 @@
  * @link      https://github.com/Fakeronline
  */
  
-namespace Allinpay;
+namespace Fakeronline\Allinpay;
 use Exception as BaseException;
 
 class Exception extends BaseException{
