@@ -12,7 +12,7 @@
  */
 
 
-namespace Allinpay\Utils;
+namespace Fakeronline\Allinpay\Utils;
 
 /**
  * Curl请求类  TODO:临时做法，只支持POST提交，后续有待改善

@@ -12,7 +12,7 @@
  */
 
 
-namespace Allinpay\Utils;
+namespace Fakeronline\Allinpay\Utils;
 
 class Arr{
 

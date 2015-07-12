@@ -11,7 +11,7 @@
  * @link      https://github.com/Fckeronline
  */
 
-namespace Allinpay\Utils;
+namespace Fakeronline\Allinpay\Utils;
 use InvalidArgumentException;
 
 class Form{
