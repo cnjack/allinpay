@@ -64,4 +64,5 @@ if($result){
 如有修改本类库的内容为自己使用，请标识类库的出处
 [Fakeronline](https://github.com/Fakeronline)<<https://github.com/Fakeronline>>
 联系邮箱：1077341744@qq.com
+
 MIT
