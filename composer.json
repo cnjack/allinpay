@@ -5,7 +5,8 @@
         "通联支付",
         "Allinpay",
         "Allinpay-sdk",
-        "sdk"
+        "sdk",
+        "通联支付接口"
     ],
     "license": "MIT",
     "require": {
