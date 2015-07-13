@@ -36,5 +36,9 @@ class Pay extends Response{
         return false;
     }
 
+    public function getOrderNo(){
+        return Arr::get($this->value, 'orderNo');
+    }
+
 }
 
