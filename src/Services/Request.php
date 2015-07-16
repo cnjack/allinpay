@@ -21,6 +21,7 @@ abstract class Request{
     use ServiceTrait;
 
     const VERSION_10 = 'v1.0';
+    const VERSION_15 = 'v1.5';
     const VERSION_20 = 'v2.0';
 
     const ENCRYPT_MD5 = 0;  //订单上送和交易结果通知都使用MD5签名
@@ -57,13 +58,8 @@ abstract class Request{
 
     final public function setVersion ($version = 'v1.0'){
 
-        if(in_array($version, [self::VERSION_10, self::VERSION_20])){
-
-            $this->value['version'] = $version;
-            return $this;
-
-        }
-        throw new InvalidArgumentException('暂不支持此版本!');
+        $this->value['version'] = $version;
+        return $this;
     }
 
     final public function setSignType($EncryptType = 0){
@@ -80,8 +76,6 @@ abstract class Request{
     }
 
     abstract protected function properties();
-
-    public function parameter($args){}
 
     protected function verify(){
 
