@@ -81,7 +81,7 @@ abstract class Request{
 
     abstract protected function properties();
 
-    abstract public function parameter($args);
+    public function parameter($args){}
 
     protected function verify(){
 
