@@ -115,30 +115,30 @@ final class Pay extends Request{
         return $this;
     }
 
-    final public function parameter($args){
+    final public function parameter($orderNo, $orderAmount, $payType = 0){
         //$orderNo, $orderAmount, $payType = 0
 
-        if(empty($args['orderNo']) || empty($args['orderAmount'])){
+        if(empty($orderNo) || empty($orderAmount)){
 
             throw new InvalidArgumentException('缺少重要参数!');
 
         }
 
-        if(strlen($args['orderNo']) > 50){
+        if(strlen($orderNo) > 50){
 
             throw new InvalidArgumentException('订单号长度不能超过50!');
 
         }
 
-        if(round($args['orderAmount'], 2) != $args['orderAmount']){
+        if(round($orderAmount, 2) != $orderAmount){
 
             throw new InvalidArgumentException('金额不正确，仅支持到分!');
 
         }
 
         $this->value['orderDatetime'] = date('YmdHis', time());
-        $this->value['orderNo'] = $args['orderNo'];
-        $this->value['orderAmount'] = $args['orderAmount'] * 100; //转为分
+        $this->value['orderNo'] = $orderNo;
+        $this->value['orderAmount'] = $orderAmount * 100; //转为分
 
         $payTypeList = [
             self::PAY_TYPE_PERSONAL,
@@ -151,15 +151,15 @@ final class Pay extends Request{
 
         ];
 
-        $args['payType'] = empty($args['payType']) ? self::PAY_TYPE_PERSONAL : $args['payType'];
+        $payType = empty($payType) ? self::PAY_TYPE_PERSONAL : $payType;
 
-        if(!in_array($args['payType'] ,$payTypeList)){
+        if(!in_array($payType ,$payTypeList)){
 
             throw new InvalidArgumentException('暂不支持此支付方式!');
 
         }
 
-        $this->value['payType'] = $args['payType'];
+        $this->value['payType'] = $payType;
 
         $this->postData = $this->sort($this->properties, $this->value);
 
