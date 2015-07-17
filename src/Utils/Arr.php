@@ -63,4 +63,21 @@ class Arr{
 
     }
 
+    public static function dot($array, $prepend = '')
+    {
+        $results = [];
+        foreach ($array as $key => $value)
+        {
+            if (is_array($value))
+            {
+                $results = array_merge($results, self::dot($value, $prepend.$key.'.'));
+            }
+            else
+            {
+                $results[$prepend.$key] = $value;
+            }
+        }
+        return $results;
+    }
+
 }
