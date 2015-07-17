@@ -80,4 +80,23 @@ class Arr{
         return $results;
     }
 
+    /**
+     * 将数组里的某一个键值作为数组的索引并返回
+     * @param array $array
+     * @param $key
+     * @return array
+     */
+    public static function key_advance(array $array ,$key){
+        $result = array();
+        foreach($array as $item){
+            $field = self::get($item, $key);
+            if(is_null($field)){
+                $result[] = $item;
+            }else{
+                $result[$field] = $item;
+            }
+        }
+        return $result;
+    }
+
 }
