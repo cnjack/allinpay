@@ -27,6 +27,7 @@ final class Refund extends Request{
     }
 
     protected function properties(){
+
         return [
             'version', 'signType', 'merchantId', 'orderNo', 'refundAmount', 'orderDatetime', 'signMsg'
         ];
@@ -41,7 +42,6 @@ final class Refund extends Request{
             $this->value['signType'] = $EncryptType;
 
             return $this;
-
         }
 
         throw new Exception('暂不支持此签名类型!');
@@ -89,7 +89,6 @@ final class Refund extends Request{
         $this->postData['signMsg'] = Encrypt::MD5_sign($this->postData, $this->config['md5key']);
 
         return $this;
-
     }
 
     public function request(){
@@ -97,12 +96,10 @@ final class Refund extends Request{
         if(!$this->verify()){
 
             throw new Exception('非法操作!');
-
         }
 
         $curl = new Curl($this->config['url']);
         return $curl->setData($this->postData)->get();
-
     }
 
 }
