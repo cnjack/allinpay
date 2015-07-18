@@ -62,7 +62,7 @@ abstract class Request{
         return $this;
     }
 
-    final public function setSignType($EncryptType = 0){
+    public function setSignType($EncryptType = 0){
 
         if($EncryptType === self::ENCRYPT_MD5){
 
