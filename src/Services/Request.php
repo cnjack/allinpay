@@ -21,6 +21,7 @@ abstract class Request{
     use ServiceTrait;
 
     const VERSION_10 = 'v1.0';
+    const VERSION_13 = 'v1.3';
     const VERSION_15 = 'v1.5';
     const VERSION_20 = 'v2.0';
 

@@ -15,8 +15,15 @@ namespace Fakeronline\Allinpay;
 
 use Fakeronline\Allinpay\Services\Request;
 use Exception;
+use Fakeronline\Allinpay\Tools\Encrypt;
 
-class Refund extends Request{
+final class Refund extends Request{
+
+    public function __construct($url, $merchantId, $key){
+
+        parent::__construct($url, $merchantId, $key);
+        $this->setVersion()->setSignType();
+    }
 
     protected function properties(){
         return [
@@ -39,7 +46,18 @@ class Refund extends Request{
         throw new Exception('暂不支持此签名类型!');
     }
 
-    final public function parameter($orderNo, $refundAmount, $orderDatetime){
+    public function setVersion ($version = 'v1.3'){
+
+        if($version !== self::VERSION_13){
+
+            throw new Exception('暂不支持此版本号');
+        }
+
+        $this->value['version'] = $version;
+        return $this;
+    }
+
+    public function parameter($orderNo, $refundAmount, $orderDatetime){
 
         if(empty($orderNo) || empty($refundAmount) || empty($orderDatetime)){
 
