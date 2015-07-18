@@ -56,7 +56,7 @@ abstract class Request{
 
     }
 
-    final public function setVersion ($version = 'v1.0'){
+    public function setVersion ($version = 'v1.0'){
 
         $this->value['version'] = $version;
         return $this;
