@@ -16,6 +16,7 @@ namespace Fakeronline\Allinpay;
 use Fakeronline\Allinpay\Services\Request;
 use Exception;
 use Fakeronline\Allinpay\Tools\Encrypt;
+use Fakeronline\Allinpay\Utils\Curl;
 
 final class Refund extends Request{
 
@@ -88,6 +89,19 @@ final class Refund extends Request{
         $this->postData['signMsg'] = Encrypt::MD5_sign($this->postData, $this->config['md5key']);
 
         return $this;
+
+    }
+
+    public function request(){
+
+        if(!$this->verify()){
+
+            throw new Exception('·Ç·¨²Ù×÷!');
+
+        }
+
+        $curl = new Curl($this->config['url']);
+        return $curl->setData($this->postData)->get();
 
     }
 
