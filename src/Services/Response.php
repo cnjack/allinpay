@@ -14,6 +14,7 @@
 namespace Fakeronline\Allinpay\Services;
 use Fakeronline\Allinpay\Tools\Encrypt;
 use Exception;
+use Fakeronline\Allinpay\Utils\Arr;
 
 abstract class Response{
 
@@ -61,6 +62,16 @@ abstract class Response{
         return $sign === $originalSign;
     }
 
-    abstract public function chkVerify($args);
+    public function chkVerify($args){
+
+        $this->value = $args;
+
+        if($this->verify()){
+            $this->errorMsg = Arr::get($this->value, 'errorCode') ? new Exception('', $this->value['errorCode']) : '';
+            return true;
+        }
+
+        return false;
+    }
 
 }
