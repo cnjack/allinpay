@@ -24,18 +24,6 @@ class Pay extends Response{
         ];
     }
 
-    public function chkVerify($args){
-
-        $this->value = $args;
-
-        if($this->verify()){
-            $this->errorMsg = Arr::get($this->value, 'errorCode') ? new Exception('', $this->value['errorCode']) : '';
-            return true;
-        }
-
-        return false;
-    }
-
     public function getOrderNo(){
         return Arr::get($this->value, 'orderNo');
     }
