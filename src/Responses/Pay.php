@@ -12,8 +12,8 @@
  */
 
 namespace Fakeronline\Allinpay\Responses;
+use Fakeronline\Allinpay\Exception;
 use Fakeronline\Allinpay\Services\Response;
-use Fakeronline\Allinpay\Tools\Encrypt;
 use Fakeronline\Allinpay\Utils\Arr;
 
 class Pay extends Response{
