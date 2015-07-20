@@ -12,7 +12,6 @@
  */
 
 namespace Fakeronline\Allinpay\Responses;
-use Fakeronline\Allinpay\Exception;
 use Fakeronline\Allinpay\Services\Response;
 use Fakeronline\Allinpay\Utils\Arr;
 

@@ -22,7 +22,7 @@
     "minimum-stability" : "dev",
     "autoload": {
         "psr-4": {
-            "Fakeronline\\Allinpay\\": "Allinpay/src"
+            "Fakeronline\\Allinpay\\": "src/"
         }
     }
 }
